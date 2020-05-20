@@ -8,10 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/shopify-buy": "^1.11.1",
     "next": "latest",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "sass": "^1.26.5",
+    "shopify-buy": "^2.10.0",
     "styled-components": "^5.0.0"
   },
   "repository": {
