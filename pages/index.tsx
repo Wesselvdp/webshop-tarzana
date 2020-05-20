@@ -1,11 +1,13 @@
-import React, { FC, useEffect } from 'react'
-import { shopify } from '../lib/shopify';
+import React, { FC } from 'react'
+import { shopify } from '@shopify';
 import { GetStaticProps } from 'next'
 import { Product } from "shopify-storefront-api-typings";
 
 
-
-import Layout from '@components/structure/Layout'
+// Components
+import Layout from '@components/structure/Layout';
+import Mast from '@components/sections/Mast';
+import FeaturedProducts from '@components/sections/FeaturedProducts';
 
 type T = {
   allProducts: any
@@ -21,17 +23,12 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 
-
 const HomePage: FC<T> = ({ allProducts }) => {
   const products: Product[] = JSON.parse(allProducts)
-
-
   return (
      <Layout>
-       Hello world
-       {
-        products.map(x => <span>{x.title}</span>)
-       }
+       <Mast />
+       <FeaturedProducts products={products} />
      </Layout>
   )
 }
