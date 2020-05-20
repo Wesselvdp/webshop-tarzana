@@ -1,14 +1,12 @@
 import React, { FC } from 'react'
-import Layout from '@components/structure/layout'
+import Layout from '@components/structure/Layout'
 type T = any
 
 const HomePage: FC<T> = () => {
   return (
-    <div>
      <Layout>
        Hello world
      </Layout>
-    </div>
   )
 }
 
