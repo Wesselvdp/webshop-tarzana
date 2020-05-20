@@ -1,10 +1,15 @@
-import styled from 'styled-components'
+import React, { FC } from 'react'
+import Layout from '@components/structure/layout'
+type T = any
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
-
-export default function Home() {
-  return <Title>My page</Title>
+const HomePage: FC<T> = () => {
+  return (
+    <div>
+     <Layout>
+       Hello world
+     </Layout>
+    </div>
+  )
 }
+
+export default HomePage
