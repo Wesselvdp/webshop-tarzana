@@ -1,30 +1,37 @@
 import React, { FC, useEffect } from 'react'
 import { shopify } from '../lib/shopify';
 import { GetStaticProps } from 'next'
+import { Product } from "shopify-storefront-api-typings";
+
 
 
 import Layout from '@components/structure/Layout'
 
-type T = any
+type T = {
+  allProducts: any
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await shopify.product.fetchAll();
-  console.log('products:', products)
-
   return {
     props: {
-      products: JSON.stringify(products)
+      allProducts: JSON.stringify(products)
     }
   }
 }
 
 
 
-const HomePage: FC<T> = () => {
+const HomePage: FC<T> = ({ allProducts }) => {
+  const products: Product[] = JSON.parse(allProducts)
+
 
   return (
      <Layout>
        Hello world
+       {
+        products.map(x => <span>{x.title}</span>)
+       }
      </Layout>
   )
 }
