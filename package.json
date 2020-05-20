@@ -1,6 +1,7 @@
 {
-  "name": "with-typescript-styled-components",
+  "name": "tarzana-shopify-theme",
   "version": "1.0.0",
+  "description": "A Webshop for Tarzana built with Nextjs + Typescript",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -12,6 +13,18 @@
     "react-dom": "^16.13.0",
     "styled-components": "^5.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Wesselvdp/webshop-tarzana.git"
+  },
+  "keywords": [
+    "shopify",
+    "nextjs",
+    "react",
+    "typescript",
+    "ecommerce",
+    "webshop"
+  ],
   "devDependencies": {
     "@types/node": "12.0.12",
     "@types/react": "16.8.23",
@@ -20,5 +33,10 @@
     "babel-plugin-styled-components": "^1.10.0",
     "typescript": "3.5.2"
   },
-  "license": "ISC"
+  "author": "Wessel van der Plas",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Wesselvdp/webshop-tarzana/issues"
+  },
+  "homepage": "https://github.com/Wesselvdp/webshop-tarzana#readme",
 }
