@@ -7,6 +7,9 @@ type T = {
   products: Product[];
 }
 
+//Temp
+import ProductCard from '../product/ProductCard'
+
 const FeaturedProducts: FC<T> = ({products}) => {
   return (
     <Section>
@@ -14,7 +17,7 @@ const FeaturedProducts: FC<T> = ({products}) => {
       {
         products.map(x => (
           <Link key={x.id} href={`/products/${x.handle}`}>
-            <span >{x.title} </span>
+            <ProductCard product={x}/>
           </Link>
         ))
        }
