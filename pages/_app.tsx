@@ -7,7 +7,8 @@ import '../styles/main.scss'
 
 const theme = {
   colors: {
-    primary: '#fff'
+    primary: '#fff',
+    secondary: '#000'
   },
   maxWidth: '1440px',
 }

@@ -5,9 +5,9 @@ import { Product } from "shopify-storefront-api-typings";
 
 
 // Components
-import Layout from '@components/structure/Layout';
 import Mast from '@components/sections/Mast';
 import FeaturedProducts from '@components/sections/FeaturedProducts';
+import Button from '@components/ui/Button'
 
 type T = {
   allProducts: any
@@ -29,6 +29,9 @@ const HomePage: FC<T> = ({ allProducts }) => {
   <>
        <Mast />
        <FeaturedProducts products={products} />
+       <Button buttonStyle="outlined" href="/">Outlined</Button>
+       <Button buttonStyle="solid" color="primary" href="/">Solid White</Button>
+       <Button buttonStyle="solid" color="secondary" href="/">Solid Black</Button>
   </>
   )
 }
