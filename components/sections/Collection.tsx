@@ -14,7 +14,7 @@ const Collection: FC<T> = ({ products }) => {
   // Filter
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [productsVisible, setProductsVisible] = useState<Product[]>([])
-  const [category, setCategory] = useInput('')
+  const [category, setCategory] = useInput('Categories')
   const [sortOption, setSortOption] = useState({})
 
   // Categories
@@ -63,7 +63,7 @@ const Collection: FC<T> = ({ products }) => {
           <div className="collection-sort">
             <label>Filter by:</label>
             <select onChange={setCategory} value={category}>
-              <option selected>Categories</option>
+              <option value={'Categories'}>Categories</option>
 
               {
                 categories.map(c =>  <option key={c} value={c}>{c}</option>)

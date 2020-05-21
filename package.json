@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/shopify-buy": "^1.11.1",
+    "formik": "^2.1.4",
     "next": "latest",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

@@ -40,6 +40,7 @@ const ProductCard = styled.div`
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
 
   img {
     max-width: 100%;

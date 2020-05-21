@@ -5,24 +5,27 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import { Product } from '@/interfaces'
 
-
+ 
 
 // Components
-// import FeaturedProducts from '@components/sections/FeaturedProducts'
-// import Layout from '@components/structure'
-type T = any
+import FeaturedProducts from '@components/sections/FeaturedProducts'
+import ProductDetail from '@components/sections/ProductDetail'
+
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
   if (!params) return {props: {}}
   const handle: string = Array.isArray(params) ? '' : String(params.productHandle);
 
-    const product = await shopify.product.fetchByHandle(handle);
-    console.log('creating', product )
-    return {
-      props: {
-        singleProduct: JSON.stringify(product)
-      }
+  // Data fetching
+  const product = await shopify.product.fetchByHandle(handle);
+  const allProducts = await shopify.product.fetchAll();
+
+  return {
+    props: {
+      singleProduct: JSON.stringify(product),
+      allProducts: JSON.stringify(allProducts)
     }
+  }
 
 }
 
@@ -37,13 +40,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+type T = {
+  singleProduct: any
+  allProducts: any
+}
 
-const ProductPage: FC<T> = ({ singleProduct }) => {
+
+const ProductPage: FC<T> = ({ singleProduct, allProducts }) => {
   const product: Product = JSON.parse(singleProduct)
+  const products: Product[] = JSON.parse(allProducts)
   return (
     <div>
       <h2>{product.title}</h2>
-      {/* <FeaturedProducts products={products} /> */}
+      <ProductDetail product={product} />
+      <FeaturedProducts title="you might also like" showButton={true} products={products.slice(0, 3)} />
     </div>
   )
 }

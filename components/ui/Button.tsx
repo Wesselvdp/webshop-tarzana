@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 type T = {
-  href: string;
+  href?: string;
   className?: string;
   buttonStyle: 'outlined' | 'solid';
   color?: 'primary' | 'secondary';
@@ -20,9 +20,13 @@ const ButtonComponent: FC<T> = (props) => {
 
   return (
     <Button color={color} buttonStyle={buttonStyle}>
-      <Link href={href}>
+      {href ? (<Link href={href}>
        <a>{children}</a>
-      </Link>
+      </Link> )
+      : (
+      <span>{children}</span>
+      )
+    } 
     </Button>
   )
 }

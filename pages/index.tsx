@@ -28,10 +28,7 @@ const HomePage: FC<T> = ({ allProducts }) => {
   return (
   <>
        <Mast />
-       <FeaturedProducts products={products} />
-       <Button buttonStyle="outlined" href="/">Outlined</Button>
-       <Button buttonStyle="solid" color="primary" href="/">Solid White</Button>
-       <Button buttonStyle="solid" color="secondary" href="/">Solid Black</Button>
+       <FeaturedProducts title="Featured Products" showButton={true} products={products} />
   </>
   )
 }
