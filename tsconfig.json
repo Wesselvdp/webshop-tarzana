@@ -23,7 +23,8 @@
     "paths": {
       "@components/*": ["components/*"],
       "@shopify": ["lib/shopify"],
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@hooks/*": ["./hooks/*"]
     }
   },
   "exclude": ["node_modules"],

@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components';
 import { Product, ProductVariant, ProductImage } from '@/interfaces';
+import Link from 'next/link';
 
 type T = {
   product: Product;
@@ -8,10 +9,10 @@ type T = {
 
 const ProductCardComponent: FC<T> = ({ product }) => {
     const price: string = product.variants[0].price
-    const productImage: ProductImage = product.images[0];
+  const productImage: ProductImage = product.images[0];
 
-  console.log(product)
   return (
+   <Link href={`/products/${product.handle}`}>
     <ProductCard>
       {/* Image */}
       <div>
@@ -29,6 +30,7 @@ const ProductCardComponent: FC<T> = ({ product }) => {
       {product.title}
       </p>
     </ProductCard>
+   </Link>
   )
 }
 

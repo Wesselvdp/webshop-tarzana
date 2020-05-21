@@ -1,26 +1,22 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 
-import { Product } from "shopify-storefront-api-typings";
+import { Product } from "@/interfaces";
+
+// Components
 import Section from './Section'
+import ProductGrid from '@components/product/ProductGrid'
+
 type T = {
   products: Product[];
 }
 
-//Temp
-import ProductCard from '../product/ProductCard'
 
-const FeaturedProducts: FC<T> = ({products}) => {
+const FeaturedProducts: FC<T> = ({ products }) => {
   return (
     <Section>
       <h2>Featured products</h2>
-      {
-        products.map(x => (
-          <Link key={x.id} href={`/products/${x.handle}`}>
-            <ProductCard product={x}/>
-          </Link>
-        ))
-       }
+      <ProductGrid products={products.slice(0, 3)} />
     </Section>
   )
 }
