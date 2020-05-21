@@ -26,10 +26,10 @@ export const getStaticProps: GetStaticProps = async () => {
 const HomePage: FC<T> = ({ allProducts }) => {
   const products: Product[] = JSON.parse(allProducts)
   return (
-     <Layout>
+  <>
        <Mast />
        <FeaturedProducts products={products} />
-     </Layout>
+  </>
   )
 }
 

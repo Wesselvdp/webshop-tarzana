@@ -9,21 +9,21 @@ import { Product } from '@/interfaces'
 
 // Components
 // import FeaturedProducts from '@components/sections/FeaturedProducts'
+// import Layout from '@components/structure'
 type T = any
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if(params) {
-    const product = await shopify.product.fetchByHandle(params.productHandle);
+export const getStaticProps: GetStaticProps = async ({params}) => {
+  if (!params) return {props: {}}
+  const handle: string = Array.isArray(params) ? '' : String(params.productHandle);
+
+    const product = await shopify.product.fetchByHandle(handle);
     console.log('creating', product )
     return {
       props: {
         singleProduct: JSON.stringify(product)
       }
     }
-  } else {
-    console.log('nope')
-    return {props: {}}
-  }
+
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
