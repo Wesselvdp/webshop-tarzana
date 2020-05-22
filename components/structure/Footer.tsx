@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import EmailSubmit from '@components/ui/EmailSubmit' 
-import {Formik} from 'formik'
 type T = any
 
 const FooterComponent: FC<T> = () => {
