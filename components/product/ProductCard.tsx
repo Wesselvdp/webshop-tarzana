@@ -4,6 +4,7 @@ import { Product, ProductVariant, ProductImage } from "@/interfaces";
 import Link from "next/link";
 
 import ProductImageComponent from "./ProductImage";
+import ProductShortInfo from "./ProductShortInfo";
 
 type T = {
   product: Product;
@@ -20,9 +21,11 @@ const ProductCardComponent: FC<T> = ({ product }) => {
         <ProductImageComponent productImage={productImage} />
 
         {/* Info */}
-        <span>$ {price}</span>
-        <p>{product.productType || ""}</p>
-        <p>{product.title}</p>
+        <ProductShortInfo
+          price={price}
+          productType={product.productType}
+          title={product.title}
+        />
       </ProductCard>
     </Link>
   );
@@ -35,12 +38,21 @@ const ProductCard = styled.div`
   margin-right: auto;
   text-align: left;
 
+  .type {
+    text-transform: uppercase;
+  }
+
   img {
     max-width: 100%;
   }
 
   p {
-    margin: 0;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+  }
+
+  .title {
+    margin-top: 0;
   }
 `;
 

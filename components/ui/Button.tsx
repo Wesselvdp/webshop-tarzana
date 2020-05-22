@@ -7,6 +7,8 @@ type T = {
   className?: string;
   buttonStyle: "outlined" | "solid";
   color?: "primary" | "secondary";
+  disabled?: boolean;
+  onClick?: any;
 };
 
 type StyleProps = {
@@ -16,10 +18,14 @@ type StyleProps = {
 };
 
 const ButtonComponent: FC<T> = (props) => {
-  const { children, href, buttonStyle, color } = props;
+  const { children, disabled, href, buttonStyle, color, className } = props;
 
   return (
-    <Button color={color} buttonStyle={buttonStyle}>
+    <Button
+      className={`${className} ${disabled ? "disabled" : ""}`}
+      color={color}
+      buttonStyle={buttonStyle}
+    >
       {href ? (
         <Link href={href}>
           <a>{children}</a>
@@ -36,6 +42,22 @@ const Button = styled("button")<StyleProps>`
     text-transform: uppercase;
     font-weight: bold;
     padding: 1em 2em;
+    cursor: pointer;
+
+    &.block {
+      width: 100%;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: initial;
+
+      &:hover {
+        background-color: inherit;
+        color: inherit;
+      }
+    }
 
     /* Outlined */
     ${({ buttonStyle, theme }) =>
@@ -47,6 +69,7 @@ const Button = styled("button")<StyleProps>`
       &:hover {
         color: ${theme.colors.secondary};
         background-color:  ${theme.colors.primary};
+        border: 2px solid ${theme.colors.primary}
       }
   `}
 
@@ -57,10 +80,12 @@ const Button = styled("button")<StyleProps>`
       `
       color: ${theme.colors.secondary};
       background-color:  ${theme.colors.primary};
+      border: 2px solid ${theme.colors.primary};
 
       &:hover {
         color: ${theme.colors.primary};
         background-color:  ${theme.colors.secondary};
+        
       }
   `}
 
@@ -75,6 +100,8 @@ const Button = styled("button")<StyleProps>`
       &:hover {
         color: ${theme.colors.secondary};
         background-color:  ${theme.colors.primary};
+        border: 2px solid ${theme.colors.primary}
+
       }
   `}
    

@@ -5,6 +5,7 @@ import styled from "styled-components";
 // Components
 import Button from "@components/ui/Button";
 import ProductImage from "./ProductImage";
+import ProductShortInfo from "./ProductShortInfo";
 
 type T = {
   product: Product;
@@ -38,35 +39,49 @@ const ProductConfig: FC<T> = ({ product }) => {
       </Col>
       <Col>
         {/* Content */}
-        <p>{product.productType || ""}</p>
-        <h1>{product.title}</h1>
-        <p>$ {variant.price}</p>
+        <ProductShortInfo
+          price={variant.price}
+          productType={product.productType}
+          title={product.title}
+        />
 
         {/* Variable Content Navigation */}
-        <nav>
+        <nav className="info-nav">
           {infoOptions.map((str) => (
-            <button onClick={() => setInfoOption(str)} key={str}>
+            <button
+              className={infoOption === str ? "active" : ""}
+              onClick={() => setInfoOption(str)}
+              key={str}
+            >
               {str}
             </button>
           ))}
         </nav>
-        <p>{infoOption}</p>
+
+        {infoOption === "info" && <p>{product.description}</p>}
+        {infoOption === "sizing" && "sizing"}
+        {infoOption === "shipping & returns" && "Shipping information"}
 
         {/* Sizes */}
-        <SizePicker>
-          {product.variants.map((v) => (
-            <button
-              disabled={!v.available}
-              className={variant === v ? "selected" : ""}
-              onClick={() => setVariant(v)}
-            >
-              {v.title}
-            </button>
-          ))}
-        </SizePicker>
+        {product.variants.length > 1 && (
+          <SizePicker>
+            {product.variants.map((v) => (
+              <Button
+                disabled={!v.available}
+                color={variant === v ? "primary" : "secondary"}
+                aria-selected={variant === v}
+                buttonStyle="solid"
+                // className={variant === v ? "selected" : ""}
+                onClick={() => setVariant(v)}
+              >
+                {v.title}
+              </Button>
+            ))}
+          </SizePicker>
+        )}
 
         {/* Buy button */}
-        <Button buttonStyle="solid" color="primary">
+        <Button buttonStyle="solid" color="primary" className="block">
           Add to cart
         </Button>
       </Col>
@@ -77,17 +92,47 @@ const ProductConfig: FC<T> = ({ product }) => {
 const Container = styled.div`
   display: flex;
   text-align: left;
+
+  .info-nav {
+    display: flex;
+    margin-bottom: 1em;
+
+    button {
+      flex-grow: 1;
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: inherit;
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.colors.inactive};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.inactive};
+      cursor: pointer;
+      font-weight: bold;
+
+      &:hover {
+        color: ${({ theme }) => theme.colors.primary};
+      }
+
+      &.active {
+        color: ${({ theme }) => theme.colors.primary};
+        border-bottom: 4px solid ${({ theme }) => theme.colors.primary};
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 `;
+
 const Col = styled.div`
   flex: 1;
+  padding: 0 15px;
 `;
 
 const SizePicker = styled.div`
   display: flex;
-
-  button.selected {
-    background-color: red;
-  }
+  margin-bottom: 1em;
 `;
 
 export default ProductConfig;
