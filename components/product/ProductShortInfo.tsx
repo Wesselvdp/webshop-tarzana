@@ -21,7 +21,7 @@ const Summary = styled.div`
   margin-bottom: 1em;
 
   .type {
-    margin-botom: 0;
+    margin-bottom: 0;
   }
 
   .title {

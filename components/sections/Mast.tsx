@@ -27,9 +27,9 @@ const Mast: FC<T> = () => {
   );
 };
 
-const Title = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
-`;
+// const Title = styled.div`
+//   color: ${({ theme }) => theme.colors.primary};
+// `;
 
 const Container = styled.div`
   background: green;

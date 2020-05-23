@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Product } from "@/interfaces";
+import { Product } from "@/types/interfaces";
 
 type T = {
   product: Product;

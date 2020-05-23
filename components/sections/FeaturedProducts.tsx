@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Product } from "@/interfaces";
+import { Product } from "@/types/interfaces";
 
 // Components
 import Section from "./Section";

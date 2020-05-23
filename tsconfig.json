@@ -19,6 +19,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // "typeRoots" : ["./typings", "./node_modules/@types/"],
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],

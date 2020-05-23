@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Product, ProductVariant, ProductImage } from "@/interfaces";
+import { Product } from "@/types/interfaces";
 
 import ProductCard from "./ProductCard";
 

@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { ProductImage } from "@/interfaces";
+import { ProductImage } from "@/types/interfaces";
 
 type T = {
   productImage: ProductImage;
   className?: string;
+  onClick?: any;
 };
 
 const ProductImageComponent: FC<T> = ({ productImage, className }) => {

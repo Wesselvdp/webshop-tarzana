@@ -3,7 +3,7 @@ import { shopify } from "@shopify";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { Product } from "@/interfaces";
+// import { Product } from "@/types/interfaces";
 
 // Components
 import FeaturedProducts from "@components/sections/FeaturedProducts";
@@ -18,7 +18,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // Data fetching
   const product = await shopify.product.fetchByHandle(handle);
   const allProducts = await shopify.product.fetchAll();
-  const filteredProducts = allProducts.filter((p) => p.handle !== handle);
+  const filteredProducts: ShopifyBuy.Product[] = allProducts.filter(
+    (p) => p.handle !== handle
+  );
 
   return {
     props: {
@@ -29,7 +31,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products: Product[] = await shopify.product.fetchAll();
+  const products = await shopify.product.fetchAll();
 
   const paths = products.map(({ handle }) => ({
     params: { productHandle: handle || "" },
@@ -47,8 +49,8 @@ type T = {
 };
 
 const ProductPage: FC<T> = ({ singleProduct, allProducts }) => {
-  const product: Product = JSON.parse(singleProduct);
-  const products: Product[] = JSON.parse(allProducts);
+  const product = JSON.parse(singleProduct);
+  const products = JSON.parse(allProducts);
   return (
     <div>
       <ProductDetail product={product} />

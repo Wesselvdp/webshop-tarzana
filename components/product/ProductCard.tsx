@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Product, ProductVariant, ProductImage } from "@/interfaces";
+import { Product, ProductImage } from "@/types/interfaces";
 import Link from "next/link";
 
 import ProductImageComponent from "./ProductImage";

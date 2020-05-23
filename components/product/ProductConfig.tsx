@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { Product, ProductVariant } from "@/interfaces";
+import { Product, ProductVariant } from "@/types/interfaces";
 import styled from "styled-components";
 
 // Components
@@ -22,7 +22,6 @@ const ProductConfig: FC<T> = ({ product }) => {
   const [variant, setVariant] = useState<ProductVariant>(initialVariant);
   const [infoOption, setInfoOption] = useState("info");
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  console.log(product);
   useEffect(() => {
     const newVariant =
       product.variants.find(({ available }) => available) || initialVariant;
@@ -40,6 +39,7 @@ const ProductConfig: FC<T> = ({ product }) => {
             <div className="previews">
               {product.images.map((image) => (
                 <ProductImage
+                  onClick={() => setSelectedImage(image)}
                   key={image.id}
                   className="item"
                   productImage={image}
@@ -79,6 +79,7 @@ const ProductConfig: FC<T> = ({ product }) => {
           <SizePicker>
             {product.variants.map((v) => (
               <Button
+                key={v.handle}
                 disabled={!v.available}
                 color={variant === v ? "primary" : "secondary"}
                 aria-selected={variant === v}
