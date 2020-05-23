@@ -10,6 +10,10 @@ const Mast: FC<T> = () => {
   return (
     <Section>
       <Container>
+        <div
+          style={{ backgroundImage: "url('/images/frame.svg')" }}
+          className="vector"
+        ></div>
         <video id="videoBG" poster="poster.JPG" autoPlay muted loop>
           <source src="/video2.mp4" type="video/mp4" />
         </video>
@@ -34,8 +38,19 @@ const Mast: FC<T> = () => {
 const Container = styled.div`
   background: green;
   position: relative;
-  padding-top: 60%;
+  padding-top: 70%;
   overflow: hidden;
+
+  .vector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-position: center center;
+    background-size: 101% 103%;
+  }
 
   .content {
     position: absolute;
@@ -47,6 +62,7 @@ const Container = styled.div`
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 
     h1 {
       margin-bottom: auto;
@@ -62,10 +78,11 @@ const Container = styled.div`
     right: 0;
     bottom: 0;
     max-height: 100%;
+    min-height: 100%;
   }
   @media (min-aspect-ratio: 16/9) {
     #videoBG {
-      width: 100%;
+      /* width: 100%; */
       /* height: auto; */
     }
   }

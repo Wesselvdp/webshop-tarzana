@@ -18,7 +18,7 @@ const Section = styled.section`
     max-width: ${({ theme }) => theme.maxWidth};
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 `;
 
