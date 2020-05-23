@@ -41,9 +41,9 @@ const Button = styled("button")<StyleProps>`
     border: 2px solid;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 1em 2em;
+    padding: 1.5em 3em;
     cursor: pointer;
-
+    box-sizing: border-box;
     &.block {
       width: 100%;
     }
@@ -76,7 +76,7 @@ const Button = styled("button")<StyleProps>`
   /* Solid White */
     ${({ buttonStyle, color, theme }) =>
       buttonStyle === "solid" &&
-      color === "primary" &&
+      color !== "secondary" &&
       `
       color: ${theme.colors.secondary};
       background-color:  ${theme.colors.primary};

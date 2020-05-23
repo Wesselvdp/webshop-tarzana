@@ -22,12 +22,11 @@ const ProductConfig: FC<T> = ({ product }) => {
   const [variant, setVariant] = useState<ProductVariant>(initialVariant);
   const [infoOption, setInfoOption] = useState("info");
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
-
+  console.log(product);
   useEffect(() => {
     const newVariant =
       product.variants.find(({ available }) => available) || initialVariant;
     setVariant(newVariant);
-    console.log(newVariant);
   }, [product]);
 
   const infoOptions = ["info", "sizing", "shipping & returns"];
@@ -35,7 +34,20 @@ const ProductConfig: FC<T> = ({ product }) => {
   return (
     <Container>
       <Col>
-        <ProductImage productImage={selectedImage} />
+        <VisualContainer>
+          <ProductImage productImage={selectedImage} />
+          {product.images.length > 1 && (
+            <div className="previews">
+              {product.images.map((image) => (
+                <ProductImage
+                  key={image.id}
+                  className="item"
+                  productImage={image}
+                />
+              ))}
+            </div>
+          )}
+        </VisualContainer>
       </Col>
       <Col>
         {/* Content */}
@@ -92,6 +104,11 @@ const ProductConfig: FC<T> = ({ product }) => {
 const Container = styled.div`
   display: flex;
   text-align: left;
+  justify-content: space-between;
+
+  .previews {
+    display: flex;
+  }
 
   .info-nav {
     display: flex;
@@ -128,7 +145,9 @@ const Container = styled.div`
 const Col = styled.div`
   flex: 1;
   padding: 0 15px;
+  max-width: 600px;
 `;
+const VisualContainer = styled.div``;
 
 const SizePicker = styled.div`
   display: flex;

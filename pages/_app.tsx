@@ -11,7 +11,7 @@ const theme = {
     secondary: "#000",
     inactive: "#a7a5a5", // Random grey color, check with design
   },
-  maxWidth: "1440px",
+  maxWidth: "1400px",
 };
 
 function MyApp({ Component, pageProps }: AppProps) {

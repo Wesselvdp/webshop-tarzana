@@ -4,17 +4,17 @@ import { ProductImage } from "@/interfaces";
 
 type T = {
   productImage: ProductImage;
+  className?: string;
 };
 
-const ProductImageComponent: FC<T> = ({ productImage }) => {
-  console.log("image", productImage);
+const ProductImageComponent: FC<T> = ({ productImage, className }) => {
   return (
-    <Component>
+    <Component className={className}>
       {/* Product Image */}
 
       <Background
         className="background"
-        style={{ backgroundImage: "url('/images/card.png')" }}
+        style={{ backgroundImage: "url('/images/card.svg')" }}
       ></Background>
       <picture>
         <img src={productImage.src} alt="" />
@@ -29,7 +29,6 @@ const Component = styled.div`
   align-items: center;
   position: relative;
   max-width: 400px;
-  min-height: 100%;
   margin: 0 auto;
 
   &::after {

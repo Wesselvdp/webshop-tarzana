@@ -6,7 +6,7 @@ export interface Product {
   productType?: string;
   id: string;
   description: string;
-  publishedAt: string;
+  publishedAt?: string;
 }
 
 export interface ProductImage {

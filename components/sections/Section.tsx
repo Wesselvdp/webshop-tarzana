@@ -11,10 +11,14 @@ const SectionComponent: FC<T> = ({ children, className }) => {
 };
 
 const Section = styled.section`
+  position: relative;
+  padding: 2rem 0;
+
   .container {
     max-width: ${({ theme }) => theme.maxWidth};
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid red;
   }
 `;
 

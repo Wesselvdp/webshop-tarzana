@@ -12,7 +12,7 @@ const ProductShortInfo: FC<T> = ({ price, productType, title }) => {
     <Summary>
       <p className="type">{productType || ""}</p>
       <h2 className="title">{title}</h2>
-      <span>$ {price}</span>
+      <span>${price}</span>
     </Summary>
   );
 };

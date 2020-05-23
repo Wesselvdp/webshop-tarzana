@@ -1,27 +1,27 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
-import Link from 'next/link'
-import EmailSubmit from '@components/ui/EmailSubmit' 
-type T = any
+import React, { FC } from "react";
+import styled from "styled-components";
+import Link from "next/link";
+import EmailSubmit from "@components/ui/EmailSubmit";
+type T = any;
 
 const FooterComponent: FC<T> = () => {
   return (
-    <Footer>
-     <div className="container">
-       <div className="col">
-         <h3>Newsletter</h3>
-         {/* <input type="text" name="" id="" placeholder="Your e-mail here"/>
+    <Footer style={{ backgroundImage: "url('/images/card.svg')" }}>
+      <div className="container">
+        <div className="col">
+          <h3>Newsletter</h3>
+          {/* <input type="text" name="" id="" placeholder="Your e-mail here"/>
          <input type="submit" name="" id=""/> */}
-        <EmailSubmit />
-       </div>
+          <EmailSubmit />
+        </div>
 
-       {/* Logo */}
-       <div className="col">
-        <h1>TARZANA</h1>
-       </div>
+        {/* Logo */}
+        <div className="col">
+          <h1>TARZANA</h1>
+        </div>
 
-      {/* Navigation */}
-       <div className="col">
+        {/* Navigation */}
+        <div className="col">
           <ul role="nav">
             <li>
               <Link href="/">
@@ -44,23 +44,28 @@ const FooterComponent: FC<T> = () => {
               </Link>
             </li>
           </ul>
-       </div>
-     </div>
+        </div>
+      </div>
     </Footer>
-
-  )
-}
+  );
+};
 
 const Footer = styled.footer`
-  background-color: #fff;
   color: #000;
   text-align: left;
-  
+  border: 1px solid green;
+  padding-top: 12em;
+  background-size: 130%;
+  background-repeat: no-repeat;
+  background-position: 39% 1%;
+
   .container {
-    max-width: ${({theme}) => theme.maxWidth};
+    background-color: #fff;
+    max-width: ${({ theme }) => theme.maxWidth};
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    padding: 0 15px;
 
     .col {
       flex: 1;
@@ -70,11 +75,11 @@ const Footer = styled.footer`
   ul {
     columns: 2;
     padding-left: 0;
-      list-style: none;
+    list-style: none;
 
     li {
     }
   }
-`
+`;
 
-export default FooterComponent
+export default FooterComponent;
