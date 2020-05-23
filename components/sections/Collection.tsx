@@ -6,6 +6,8 @@ import useInput from "@hooks/useInput";
 import Section from "./Section";
 import ProductGrid from "@components/product/ProductGrid";
 
+import useSort from "@hooks/useSort";
+
 type T = {
   products: Product[];
 };
@@ -15,21 +17,10 @@ const Collection: FC<T> = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [productsVisible, setProductsVisible] = useState<Product[]>([]);
   const [category, setCategory] = useInput("Categories");
-  const [sortOption, setSortOption] = useState("");
+  const [sortOption, setSortName, sortOptions] = useSort();
 
   // Categories
   const categories = [...new Set(products.map((x) => x.productType))];
-
-  const sortOptions = [
-    {
-      title: "High to low",
-      name: "priceToLow",
-    },
-    {
-      title: "Low to High",
-      name: "priceToHigh",
-    },
-  ];
 
   useEffect(() => {
     // Return all if nothing (aka Categories) is selected
@@ -40,8 +31,9 @@ const Collection: FC<T> = ({ products }) => {
   }, [category]);
 
   useEffect(() => {
-    if (!sortOption) return;
     let sorted = filteredProducts;
+    // if (sortOption === "") return setProductsVisible(sorted);
+    console.log("sortOption is", sortOption.name);
     const priceToLow = (arr: Product[]) =>
       arr.sort(
         (a, b) => parseInt(a.variants[0].price) - parseInt(b.variants[0].price)
@@ -51,8 +43,9 @@ const Collection: FC<T> = ({ products }) => {
         (a, b) => parseInt(b.variants[0].price) - parseInt(a.variants[0].price)
       );
 
-    if (sortOption === "priceToLow") sorted = priceToLow(filteredProducts);
-    if (sortOption === "priceToHigh") sorted = priceToHigh(filteredProducts);
+    if (sortOption.name === "priceToLow") sorted = priceToLow(filteredProducts);
+    if (sortOption.name === "priceToHigh")
+      sorted = priceToHigh(filteredProducts);
 
     setProductsVisible(sorted);
   }, [filteredProducts, sortOption]);
@@ -63,7 +56,7 @@ const Collection: FC<T> = ({ products }) => {
         <div className="sort">
           <div className="collection-sort">
             <label>Filter by:</label>
-            <select onChange={() => setCategory} value={category}>
+            <select onChange={(e) => setCategory(e)} value={category}>
               <option value={"Categories"}>Categories</option>
 
               {categories.map((c) => (
@@ -77,8 +70,8 @@ const Collection: FC<T> = ({ products }) => {
           <div className="collection-sort">
             <label>Sort by:</label>
             <select
-              onChange={(e) => setSortOption(e.target.value)}
-              value={sortOption}
+              onChange={(e) => setSortName(e.target.value)}
+              value={sortOption.name}
             >
               {sortOptions.map((c) => (
                 <option key={c.title} value={c.name}>
