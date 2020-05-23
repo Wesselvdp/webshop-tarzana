@@ -73,7 +73,7 @@ const Collection: FC<T> = ({ products }) => {
               onChange={(e) => setSortName(e.target.value)}
               value={sortOption.name}
             >
-              {sortOptions.map((c) => (
+              {sortOptions.map((c: any) => (
                 <option key={c.title} value={c.name}>
                   {c.title}
                 </option>
