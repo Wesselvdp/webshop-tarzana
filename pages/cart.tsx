@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
-import { shopifyClient, createCheckout } from "@shopify";
+import React, { FC } from "react";
+import { createCheckout } from "@shopify";
 type T = any;
 
 const CartPage: FC<T> = () => {

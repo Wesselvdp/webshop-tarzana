@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { shopify } from "@shopify";
+import { shopifyClient } from "@shopify";
 import { GetStaticProps } from "next";
 import { Product } from "@/types/interfaces";
 
@@ -18,7 +18,7 @@ const ProductsPage: FC<T> = ({ allProducts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await shopify.product.fetchAll();
+  const products = await shopifyClient.product.fetchAll();
   return {
     props: {
       allProducts: JSON.stringify(products),

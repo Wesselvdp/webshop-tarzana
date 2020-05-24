@@ -167,9 +167,9 @@ const Col = styled.div`
 `;
 const VisualContainer = styled.div``;
 
-const SizePicker = styled.div`
-  display: flex;
-  margin-bottom: 1em;
-`;
+// const SizePicker = styled.div`
+//   display: flex;
+//   margin-bottom: 1em;
+// `;
 
 export default ProductConfig;
