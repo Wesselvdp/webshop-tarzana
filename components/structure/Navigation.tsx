@@ -18,7 +18,7 @@ const NavigationComponent: FC<T> = () => {
         <div id="logo">
           <Link href="/">
             <a>
-              <h1>TARZANA</h1>
+              <img src="/images/logo.svg" alt="Tarzana logo" />
             </a>
           </Link>
         </div>
@@ -41,16 +41,25 @@ const Navigation = styled.nav`
   align-items: center;
   justify-content: center;
   align-items: center;
+  margin: 2em 0;
 
   a {
     text-decoration: none;
-    margin: 0 40px;
+    padding: 0 40px;
   }
 
   #logo {
     width: 200px;
     height: 100%;
     margin: 0;
+
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      padding: 0;
+    }
 
     h1 {
       margin: inherit;

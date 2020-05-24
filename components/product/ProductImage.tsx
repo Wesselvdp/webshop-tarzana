@@ -17,6 +17,11 @@ const ProductImageComponent: FC<T> = ({ productImage, className }) => {
         className="background"
         style={{ backgroundImage: "url('/images/card.svg')" }}
       ></Background>
+      <Background
+        className="background tiger"
+        style={{ backgroundImage: "url('/images/tiger.png')" }}
+      ></Background>
+
       <picture>
         <img src={productImage.src} alt="" />
       </picture>
@@ -38,20 +43,34 @@ const Component = styled.div`
     padding-top: 100%;
   }
 
+  picture {
+    z-index: 1;
+  }
+
   img {
     max-width: 75%;
-    mix-blend-mode: multiply;
+    z-index: 10;
+    /* mix-blend-mode: multiply; */
+    transition: all 0.3s ease;
   }
 `;
 
 const Background = styled.div`
   position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
+  left: 5%;
+  top: 5%;
+  right: 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: all 0.45s cubic-bezier(0.25, 0.1, 0.57, 1.46);
+
+  &.tiger {
+    background-size: contain;
+    z-index: -1;
+    left: 0;
+    top: 0;
+  }
 
   &::after {
     content: "";

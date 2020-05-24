@@ -13,6 +13,7 @@ type T = {
 const ProductCardComponent: FC<T> = ({ product }) => {
   const price: string = product.variants[0].price;
   const productImage: ProductImage = product.images[0];
+  console.log(product);
 
   return (
     <Link href={`/products/${product.handle}`}>
@@ -37,14 +38,27 @@ const ProductCard = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    .tiger {
+      transform: translate(-5px, -5px);
+    }
+    .background:not(.tiger) {
+      transform: translate(5px, 5px);
+    }
+    img {
+      transform: scale(1.1);
+    }
+  }
 
   .type {
     text-transform: uppercase;
   }
 
-  img {
+  /* img {
     max-width: 100%;
-  }
+  } */
 
   p {
     margin-bottom: 0.5em;
