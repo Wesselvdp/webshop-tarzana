@@ -7,9 +7,7 @@ type T = {
 };
 
 const CartPage: NextPage<T> = ({ checkout }) => {
-  fetch("https://api.chucknorris.io/jokes/random").then((res) =>
-    console.log(res)
-  );
+  console.log(checkout);
   return (
     <div>
       <h2>Cart Page</h2>
