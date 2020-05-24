@@ -13,7 +13,6 @@ type T = {
 const ProductCardComponent: FC<T> = ({ product }) => {
   const price: string = product.variants[0].price;
   const productImage: ProductImage = product.images[0];
-  console.log(product);
 
   return (
     <Link href={`/products/${product.handle}`}>

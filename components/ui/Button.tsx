@@ -9,6 +9,7 @@ type T = {
   color?: "primary" | "secondary";
   disabled?: boolean;
   onClick?: any;
+  hover?: boolean;
 };
 
 type StyleProps = {
@@ -18,11 +19,23 @@ type StyleProps = {
 };
 
 const ButtonComponent: FC<T> = (props) => {
-  const { children, disabled, href, buttonStyle, color, className } = props;
+  const {
+    onClick,
+    children,
+    disabled,
+    href,
+    buttonStyle,
+    color,
+    className,
+    hover = true,
+  } = props;
 
   return (
     <Button
-      className={`${className} ${disabled ? "disabled" : ""}`}
+      onClick={onClick}
+      className={`${className} ${!hover ? "no-hover" : ""} ${
+        disabled ? "disabled" : ""
+      }`}
       color={color}
       buttonStyle={buttonStyle}
     >
@@ -44,6 +57,8 @@ const Button = styled("button")<StyleProps>`
     padding: 1.5em 3em;
     cursor: pointer;
     box-sizing: border-box;
+
+
     &.block {
       width: 100%;
     }
@@ -66,7 +81,7 @@ const Button = styled("button")<StyleProps>`
       color: ${theme.colors.primary};
       background-color: transparent;
 
-      &:hover {
+      &:hover:not(.no-hover) {
         color: ${theme.colors.secondary};
         background-color:  ${theme.colors.primary};
         border: 2px solid ${theme.colors.primary}
@@ -82,7 +97,7 @@ const Button = styled("button")<StyleProps>`
       background-color:  ${theme.colors.primary};
       border: 2px solid ${theme.colors.primary};
 
-      &:hover {
+      &:hover:not(.no-hover) {
         color: ${theme.colors.primary};
         background-color:  ${theme.colors.secondary};
         
@@ -97,7 +112,7 @@ const Button = styled("button")<StyleProps>`
       color: ${theme.colors.primary};
       background-color:  ${theme.colors.secondary};
 
-      &:hover {
+      &:hover:not(.no-hover) {
         color: ${theme.colors.secondary};
         background-color:  ${theme.colors.primary};
         border: 2px solid ${theme.colors.primary}

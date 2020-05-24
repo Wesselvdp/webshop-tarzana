@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { shopify } from "@shopify";
+import { shopifyClient } from "@shopify";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 
@@ -16,8 +16,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     : String(params.productHandle);
 
   // Data fetching
-  const product = await shopify.product.fetchByHandle(handle);
-  const allProducts = await shopify.product.fetchAll();
+  const product = await shopifyClient.product.fetchByHandle(handle);
+  const allProducts = await shopifyClient.product.fetchAll();
   const filteredProducts: ShopifyBuy.Product[] = allProducts.filter(
     (p) => p.handle !== handle
   );
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await shopify.product.fetchAll();
+  const products = await shopifyClient.product.fetchAll();
 
   const paths = products.map(({ handle }) => ({
     params: { productHandle: handle || "" },

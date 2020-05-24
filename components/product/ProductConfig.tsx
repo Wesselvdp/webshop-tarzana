@@ -1,9 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { Product, ProductVariant } from "@/types/interfaces";
 import styled from "styled-components";
+import { addToCart, createCheckout } from "@shopify";
 
 // Components
 import Button from "@components/ui/Button";
+import ButtonGroup from "@components/ui/ButtonGroup";
 import ProductImage from "./ProductImage";
 import ProductShortInfo from "./ProductShortInfo";
 
@@ -38,12 +40,13 @@ const ProductConfig: FC<T> = ({ product }) => {
           {product.images.length > 1 && (
             <div className="previews">
               {product.images.map((image) => (
-                <ProductImage
-                  onClick={() => setSelectedImage(image)}
-                  key={image.id}
-                  className="item"
-                  productImage={image}
-                />
+                <div key={image.id} onClick={() => setSelectedImage(image)}>
+                  <ProductImage
+                    isPreview={true}
+                    className="item"
+                    productImage={image}
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -76,10 +79,11 @@ const ProductConfig: FC<T> = ({ product }) => {
 
         {/* Sizes */}
         {product.variants.length > 1 && (
-          <SizePicker>
-            {product.variants.map((v) => (
+          <ButtonGroup>
+            {product.variants.map((v, i) => (
               <Button
-                key={v.handle}
+                key={i}
+                hover={!v.available || variant !== v}
                 disabled={!v.available}
                 color={variant === v ? "primary" : "secondary"}
                 aria-selected={variant === v}
@@ -90,12 +94,25 @@ const ProductConfig: FC<T> = ({ product }) => {
                 {v.title}
               </Button>
             ))}
-          </SizePicker>
+          </ButtonGroup>
         )}
 
         {/* Buy button */}
-        <Button buttonStyle="solid" color="primary" className="block">
+        <Button
+          onClick={() => addToCart()}
+          buttonStyle="solid"
+          color="primary"
+          className="block"
+        >
           Add to cart
+        </Button>
+        <Button
+          onClick={() => createCheckout()}
+          buttonStyle="solid"
+          color="primary"
+          className="block"
+        >
+          Create checkout
         </Button>
       </Col>
     </Container>

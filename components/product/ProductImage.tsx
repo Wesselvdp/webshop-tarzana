@@ -6,24 +6,46 @@ type T = {
   productImage: ProductImage;
   className?: string;
   onClick?: any;
+  isPreview?: boolean;
 };
 
-const ProductImageComponent: FC<T> = ({ productImage, className }) => {
+import CardSvg from "@components/CardSvg";
+
+const ProductImageComponent: FC<T> = ({
+  productImage,
+  className,
+  isPreview,
+}) => {
   return (
     <Component className={className}>
       {/* Product Image */}
 
-      <Background
-        className="background"
-        style={{ backgroundImage: "url('/images/card.svg')" }}
-      ></Background>
-      <Background
-        className="background tiger"
-        style={{ backgroundImage: "url('/images/tiger.png')" }}
-      ></Background>
+      {!isPreview && (
+        <>
+          <Background
+            className="background"
+            style={{ backgroundImage: "url('/images/card.svg')" }}
+          ></Background>
+
+          <Background
+            className="background tiger"
+            style={{ backgroundImage: "url('/images/tiger.png')" }}
+          ></Background>
+        </>
+      )}
+      {isPreview && (
+        <>
+          <Background
+            className="background"
+            style={{ backgroundImage: "url('/images/card.svg')" }}
+          ></Background>
+        </>
+      )}
+
+      <CardSvg clipPathsUnits="objectBoundingBox" />
 
       <picture>
-        <img src={productImage.src} alt="" />
+        <img style={{ clipPath: "url(#clip)" }} src={productImage.src} alt="" />
       </picture>
     </Component>
   );
@@ -34,7 +56,7 @@ const Component = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  max-width: 400px;
+  /* max-width: 400px; */
   margin: 0 auto;
 
   &::after {
