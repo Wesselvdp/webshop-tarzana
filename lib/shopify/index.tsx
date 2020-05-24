@@ -1,8 +1,8 @@
 import Client, { Cart } from "shopify-buy";
 
 export const shopifyClient = Client.buildClient({
-  domain: process.env.SHOPIFY_DOMAIN || "",
-  storefrontAccessToken: process.env.SHOPIFY_MAIN_TOKEN || "",
+  domain: process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || "",
+  storefrontAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_MAIN_TOKEN || "",
 });
 
 const getCheckout = async (): Promise<Cart> => {

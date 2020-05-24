@@ -1,24 +1,26 @@
-import React, { FC } from "react";
-import { createCheckout } from "@shopify";
-type T = any;
+import React from "react";
+import { createCheckout, shopifyClient } from "@shopify";
+import { NextPage } from "next";
 
-const CartPage: FC<T> = () => {
-  // const [p, setP] = useState<ShopifyBuy.Product[]>([]);
-  // console.log(shopifyClient);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const x = await shopifyClient.product.fetchAll();
-  //     setP(x);
-  //   };
-  //   getData();
-  //   console.log(p);
-  // }, []);
+type T = {
+  checkout: ShopifyBuy.Cart;
+};
+
+const CartPage: NextPage<T> = ({ checkout }) => {
+  fetch("https://api.chucknorris.io/jokes/random").then((res) =>
+    console.log(res)
+  );
   return (
     <div>
       <h2>Cart Page</h2>
       <button onClick={() => createCheckout()}>Click me</button>
     </div>
   );
+};
+
+CartPage.getInitialProps = async () => {
+  const checkout = await shopifyClient.checkout.create();
+  return { checkout };
 };
 
 export default CartPage;

@@ -9,11 +9,11 @@ const NavigationComponent: FC<T> = () => {
       <Navigation>
         <div className="left">Instagram</div>
 
-        <Link href="">
-          <a>Item</a>
+        <Link href="/products">
+          <a>Products</a>
         </Link>
-        <Link href="">
-          <a>Item</a>
+        <Link href="/products">
+          <a>Products</a>
         </Link>
         <div id="logo">
           <Link href="/">
